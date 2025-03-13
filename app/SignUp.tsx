@@ -4,7 +4,7 @@ import { Link } from "expo-router";
 
 // SignIn.tsx
 
-export default function SingIn() {
+export default function SignIn() {
   return (
     <View>
       <Text>Sign In</Text>

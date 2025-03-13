@@ -9,7 +9,7 @@ export default function SingIn() {
     <View>
       <Text>Sign In</Text>
       <Text>
-        Don't have an account? <Link href="/SingUp">Sign Up</Link>
+        Don't have an account? <Link href="/SignUp">Sign Up</Link>
       </Text>
     </View>
   );
