@@ -1,16 +1,32 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { Link } from "expo-router";
+import {
+  AreaInput,
+  Background,
+  SubmitButton,
+  Container,
+  SubmitText,
+  Input,
+} from "@/src/styles/styleSingInUP";
+import { Platform } from "react-native";
 
-// SignIn.tsx
-
-export default function SignIn() {
+export default function SingIn() {
   return (
-    <View>
-      <Text>Sign In</Text>
-      <Text>
-        Don't have an account? <Link href="/">Sign In</Link>
-      </Text>
-    </View>
+    <Background>
+      <Container behavior={Platform.OS === "ios" ? "padding" : ""} enabled>
+        <AreaInput>
+          <Input placeholder="Nome" />
+        </AreaInput>
+        <AreaInput>
+          <Input placeholder="Email" secureTextEntry />
+        </AreaInput>
+        <AreaInput>
+          <Input placeholder="Senha" secureTextEntry />
+        </AreaInput>
+
+        <SubmitButton activeOpacity={0.8}>
+          <SubmitText>Acessar</SubmitText>
+        </SubmitButton>
+      </Container>
+    </Background>
   );
 }

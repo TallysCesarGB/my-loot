@@ -1,17 +1,24 @@
 import { Stack } from "expo-router";
+import AuthProvider from "@/src/context/auth";
 
 export default function Layout() {
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: { backgroundColor: "#3b3dbf" },
-        headerTintColor: "white",
-        statusBarBackgroundColor: "#f0f4ff",
-        statusBarStyle: "dark",
-      }}
-    >
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="SignUp" options={{ title: "Voltar" }} />
-    </Stack>
+    <AuthProvider>
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#3b3dbf",
+            // borderBottomWidth: 1,
+            // borderColor: "#00b94a",
+          },
+          headerTintColor: "white",
+          statusBarBackgroundColor: "#f0f4ff",
+          statusBarStyle: "dark",
+        }}
+      >
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="SignUp" options={{ title: "Voltar" }} />
+      </Stack>
+    </AuthProvider>
   );
 }
