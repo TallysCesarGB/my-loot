@@ -14,22 +14,22 @@ import { Platform } from "react-native";
 import { AuthContext } from "@/src/context/auth";
 
 export default function SingIn() {
-  const authContext = useContext(AuthContext);
+  // const authContext = useContext(AuthContext);
 
-  if (!authContext) {
-    throw new Error("AuthContext must be used within an AuthProvider");
-  }
+  // if (!authContext) {
+  //   throw new Error("AuthContext must be used within an AuthProvider");
+  // }
 
-  const { user } = authContext;
+  // const { user } = authContext;
 
-  function handleSingIn() {
-    console.log(user);
-  }
+  // function handleSingIn() {
+  //   console.log(user);
+  // }
 
   return (
     <Background>
       <Container behavior={Platform.OS === "ios" ? "padding" : ""} enabled>
-        <Logo source={require("@/assets/Logo.png")} />
+        <Logo source={require("@/src/assets/Logo.png")} />
         <AreaInput>
           <Input placeholder="Email" />
         </AreaInput>
@@ -37,7 +37,7 @@ export default function SingIn() {
           <Input placeholder="Senha" secureTextEntry />
         </AreaInput>
 
-        <SubmitButton activeOpacity={0.8} onPress={handleSingIn}>
+        <SubmitButton activeOpacity={0.8} /*onPress={handleSingIn}*/>
           <SubmitText>Acessar</SubmitText>
         </SubmitButton>
         <Link href="/SignUp">
