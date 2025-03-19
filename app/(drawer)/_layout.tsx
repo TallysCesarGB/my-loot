@@ -1,3 +1,4 @@
+import React, { useContext, useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 
@@ -9,7 +10,7 @@ export default function Layout() {
           name="index" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: "Home",
-            title: "overview",
+            title: "Home",
           }}
         />
       </Drawer>

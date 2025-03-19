@@ -1,11 +1,12 @@
 import React, { useState, createContext, ReactNode } from "react";
 import api from "../services/api";
 import { router } from "expo-router";
-import axios from "axios";
 
-// interface User {
-//   name: string;
-// }
+interface User {
+  id: string;
+  email: string;
+  name: string;
+}
 
 interface SignUpData {
   name: string;
@@ -14,9 +15,11 @@ interface SignUpData {
 }
 
 interface AuthContextType {
-  // user: User;
+  user: User | null;
   signUp: (data: SignUpData) => void;
+  signIn: (email: string, password: string) => void;
   loading: boolean;
+  signed: boolean;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -27,8 +30,10 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const signed = !!user;
 
   async function signUp(data: SignUpData) {
     console.log(data);
@@ -60,8 +65,39 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function signIn(email: string, password: string) {
+    setLoading(true);
+
+    try {
+      const response = await api.post("/login", {
+        email: email,
+        password: password,
+      });
+      console.log(response.status);
+      const { id, name, token } = response.data;
+
+      const data = {
+        id,
+        name,
+        token,
+        email,
+      };
+
+      api.defaults.headers["Authorization"] = `Bearer ${token}`;
+
+      setUser({ id, name, email });
+      router.push("/(drawer)");
+      setLoading(false);
+    } catch (err) {
+      console.log("Error", err);
+      alert("Error ao conectar no servidor. Tente novamente.");
+      setLoading(false);
+    }
+    // router.push("/(drawer)");
+  }
+
   return (
-    <AuthContext.Provider value={{ signUp, loading }}>
+    <AuthContext.Provider value={{ user, signUp, signIn, loading, signed }}>
       {children}
     </AuthContext.Provider>
   );

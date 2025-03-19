@@ -18,6 +18,7 @@ export default function Layout() {
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" options={{ title: "Voltar" }} />
+        <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
       </Stack>
     </AuthProvider>
   );
