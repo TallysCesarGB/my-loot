@@ -21,7 +21,7 @@ export default function SingIn() {
     throw new Error("AuthContext must be used within an AuthProvider");
   }
 
-  const { signUp, loading } = authContext;
+  const { signUp, loadingAuth } = authContext;
 
   function handleSingUp() {
     if (!name || !email || !password) {
@@ -58,7 +58,7 @@ export default function SingIn() {
         </AreaInput>
 
         <SubmitButton activeOpacity={0.8} onPress={handleSingUp}>
-          {loading ? (
+          {loadingAuth ? (
             <ActivityIndicator size={20} color="#FFF" />
           ) : (
             <SubmitText>Acessar</SubmitText>
