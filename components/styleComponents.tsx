@@ -1,5 +1,7 @@
 import styled from "styled-components/native";
 
+export const Container = styled.View``;
+
 export const HeaderComponent = styled.SafeAreaView`
   width: 100%;
   max-height: 60px;
@@ -19,3 +21,9 @@ export const ButtonDrawer = styled.TouchableOpacity`
   alignitems: center;
   justifycontent: center;
 `;
+
+export const ListCardsBalance = styled.FlatList`
+  max-height: 180px;
+`;
+
+export const LabelCard = styled.Text``;

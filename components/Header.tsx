@@ -1,7 +1,6 @@
 import React from "react";
 import Icon from "react-native-vector-icons/Feather";
 import { ButtonDrawer, HeaderComponent, HeaderTitle } from "./styleComponents";
-import { Background } from "@/src/styles/styleSingInUP";
 import { useNavigation } from "expo-router";
 import { DrawerActions } from "@react-navigation/native";
 

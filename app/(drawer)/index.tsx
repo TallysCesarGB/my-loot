@@ -7,6 +7,13 @@ import { Background } from "@/src/styles/styleSingInUP";
 import api from "@/src/services/api";
 import { format } from "date-fns";
 import { useIsFocused } from "@react-navigation/native";
+import BalanceCard from "@/components/BalanceCard";
+import { ListCardsBalance } from "@/components/styleComponents";
+
+interface BalanceItem {
+  tag: string;
+  saldo: number;
+}
 
 export default function Home() {
   const authContext = useContext(AuthContext);
@@ -18,7 +25,7 @@ export default function Home() {
   const { signOut, user } = authContext;
 
   const isFocused = useIsFocused();
-  const [listBalance, setListBalance] = useState([]);
+  const [listBalance, setListBalance] = useState<BalanceItem[]>([]);
   const [dateMovements, setDateMovements] = useState(new Date());
 
   useEffect(() => {
@@ -47,6 +54,15 @@ export default function Home() {
   return (
     <Background>
       <Header title="Minhas Movimentações" />
+      <ListCardsBalance
+        data={listBalance}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item: BalanceItem) => item.tag}
+        renderItem={({ item }: { item: BalanceItem }) => (
+          <BalanceCard data={item} />
+        )}
+      />
       <View
         style={{
           flex: 1,
