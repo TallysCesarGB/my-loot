@@ -1,6 +1,14 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View``;
+export const Container = styled.View`
+  background-color: #${(props) => props.bg};
+  width: 300px;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 8px;
+  padding-left: 16px;
+  margin: 16px;
+`;
 
 export const HeaderComponent = styled.SafeAreaView`
   width: 100%;
@@ -26,4 +34,13 @@ export const ListCardsBalance = styled.FlatList`
   max-height: 180px;
 `;
 
-export const LabelCard = styled.Text``;
+export const LabelCard = styled.Text`
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+`;
+
+export const Balance = styled.Text`
+  font-size: 32px;
+  color: #fff;
+`;
