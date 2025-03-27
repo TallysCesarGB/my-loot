@@ -1,7 +1,12 @@
 import styled from "styled-components/native";
 
+export const Background = styled.View`
+  flex: 1;
+  background-color: #f0f2f5;
+`;
+
 export const Container = styled.View`
-  background-color: #${(props) => props.bg};
+  background-color: #${(props: any) => props.bg};
   width: 300px;
   justify-content: center;
   align-items: flex-start;
