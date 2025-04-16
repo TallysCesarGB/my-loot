@@ -8,6 +8,7 @@ interface User {
   id: string;
   email: string;
   name: string;
+  token: string;
 }
 
 interface SignUpData {
@@ -46,6 +47,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
       if (storageUser) {
         try {
+          api.defaults.headers["Authorization"] = `Bearer ${storageUser}`;
           router.push("/(drawer)");
           const response: AxiosResponse<User> = await api.get("/me", {
             headers: {
@@ -88,6 +90,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       );
       console.log(response.status);
       if (response.status >= 200 && response.status < 300) {
+        const { token } = response.data;
+        await AsyncStorage.setItem("@userToken", token);
+        api.defaults.headers["Authorization"] = `Bearer ${token}`;
         setLoadingAuth(false);
         router.push("/");
       } else {
@@ -121,8 +126,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
       await AsyncStorage.setItem("@userToken", token);
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
+      console.log("Token armazenado no AsyncStorage:", token);
 
-      setUser({ id, name, email });
+      setUser(data);
       router.push("/(drawer)");
       setLoadingAuth(false);
     } catch (err) {
