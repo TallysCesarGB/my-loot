@@ -74,6 +74,18 @@ export default function Home() {
     };
   }, [isFocused, dateMovements]);
 
+  async function handleDeleteRegister(id: string) {
+    try {
+      await api.delete("/receives/delete", {
+        params: { item_id: id },
+      });
+
+      setDateMovements(new Date());
+    } catch (error) {
+      console.error("Error deleting register:", error);
+    }
+  }
+
   return (
     <Background>
       <Header title="Minhas Movimentações" />
@@ -106,20 +118,10 @@ export default function Home() {
         data={moviments}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item: any) => item.id}
-        renderItem={({ item }: { item: any }) => <Moviments data={item} />}
+        renderItem={({ item }: { item: any }) => (
+          <Moviments data={item} deleteRegister={handleDeleteRegister} />
+        )}
       />
-
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>Home Screen</Text>
-        <Text>Welcome, {user?.name} </Text>
-        <Button title="Sign Out" onPress={signOut} />
-      </View>
     </Background>
   );
 }

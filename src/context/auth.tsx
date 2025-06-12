@@ -3,6 +3,7 @@ import api from "../services/api";
 import { router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AxiosResponse } from "axios";
+import { push } from "expo-router/build/global-state/routing";
 
 interface User {
   id: string;
@@ -142,7 +143,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   async function signOut() {
     await AsyncStorage.clear().then(() => {
       setUser(null);
-      router.push("../");
+      router.push("../../../");
     });
   }
 

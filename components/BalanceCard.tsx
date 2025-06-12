@@ -8,6 +8,7 @@ interface BalanceItem {
 
 interface BalanceCardProps {
   data: BalanceItem; // The type of the `data` prop
+  deleteRegister?: (id: string) => void; // Optional delete function
 }
 
 export default function BalanceCard({ data }: BalanceCardProps) {
