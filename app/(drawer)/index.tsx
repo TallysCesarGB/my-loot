@@ -46,7 +46,13 @@ export default function Home() {
     async function getMovements() {
       try {
         setLoading(true);
-        const dateFormatted = format(dateMovements, "dd/MM/yyyy");
+        // const dateFormatted = format(dateMovements, "dd/MM/yyyy");
+        let date = new Date(dateMovements);
+        let onlyDate = date.valueOf() + date.getTimezoneOffset() * 60000;
+        let dateFormatted = format(onlyDate, "dd/MM/yyyy");
+
+        console.log("Data formatada:", dateFormatted);
+        console.log("dateMovements:", dateMovements);
 
         const receives = await api.get("/receives", {
           params: { date: dateFormatted },

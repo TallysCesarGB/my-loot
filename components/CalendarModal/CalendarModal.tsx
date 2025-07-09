@@ -7,7 +7,10 @@ import {
   ModalContent,
 } from "./CalendarModalStyle";
 import { Calendar, LocaleConfig } from "react-native-calendars";
-import { set, setDate } from "date-fns";
+import ptBR from "./LocaleCalendar";
+
+LocaleConfig.locales["pt-br"] = ptBR;
+LocaleConfig.defaultLocale = "pt-br";
 
 interface CalendarModalProps {
   setModalVisible: (visible: boolean) => void;
